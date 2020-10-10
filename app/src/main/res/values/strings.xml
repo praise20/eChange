@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">eChange</string>
+    <string name="splash_app_name_logo">e-Change</string>
+    <string name="splash_text_slogan">Seamless Checkout Experience…</string>
 </resources>
