@@ -2,6 +2,7 @@ package com.alc.echange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -9,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -38,6 +40,12 @@ public class SplashScreenActivity extends AppCompatActivity {
         mSlogan.setAnimation(mTopAnim);
         mImageCurrency.setAnimation(mBottomAnim);
 
-        new Handler().postDelayed(new Runn)
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+//                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+                Toast.makeText(SplashScreenActivity.this, "LoginActivity", Toast.LENGTH_SHORT).show();
+            }
+        }), TIMER;
     }
 }
