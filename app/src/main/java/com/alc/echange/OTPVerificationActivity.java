@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,55 +36,75 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
     private static final String TAG = "OTPVerificationActivity";
     EditText mEditText1, mEditText2, mEditText3, mEditText4, mEditText5, mEditText6;
-    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+    TextView mTextHeader, mTextBoxTitle;
+    ImageView mImageCheckError;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private Button mVerificationButton;
     private FirebaseAuth mAuth;
+
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        @Override
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
+            //Getting the code sent by SMS
+            String code = credential.getSmsCode();
+
+            //sometime the code is not detected automatically
+            //in this case the code will be null
+            //so user has to manually enter the code
+            if (code != null) {
+                mEditText1.setText(code.substring(0,1));
+                mEditText2.setText(code.substring(1,2));
+                mEditText3.setText(code.substring(2,3));
+                mEditText4.setText(code.substring(3,4));
+                mEditText5.setText(code.substring(4,5));
+                mEditText6.setText(code.substring(5,6));
+
+                verifyPhoneNumberWithCode(mVerificationId, code);
+
+            }
+            Toast.makeText(OTPVerificationActivity.this, "Verification completed!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onVerificationFailed(@NonNull FirebaseException e) {
+
+        }
+
+        @Override
+        public void onCodeSent(@NonNull String verificationId,
+                               @NonNull PhoneAuthProvider.ForceResendingToken token) {
+            // The SMS verification code has been sent to the provided phone number, we
+            // now need to ask the user to enter the code and then construct a credential
+            // by combining the code with a verification ID.
+            Log.d(TAG, "onCodeSent:" + verificationId);
+
+            // Save verification ID and resending token so we can use them later
+            mVerificationId = verificationId;
+            mResendToken = token;
+
+            // [START_EXCLUDE]
+            // Update UI
+            //updateUI(STATE_CODE_SENT);
+            // [END_EXCLUDE]
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_verification);
 
-        editTextInitialization();
-        mVerificationButton = findViewById(R.id.verify_otp);
-        verificationButtonClick();
         mAuth = FirebaseAuth.getInstance();
+        editTextInitialization();
+        mTextHeader = findViewById(R.id.text_header);
+        mTextBoxTitle = findViewById(R.id.text_box_title);
+        mImageCheckError = findViewById(R.id.image_check_error);
 
-        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-            @Override
-            public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
-                String code = credential.getSmsCode();
-                signInWithPhoneAuthCredential(credential);
-                Toast.makeText(OTPVerificationActivity.this, "Verification completed!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onVerificationFailed(@NonNull FirebaseException e) {
-
-            }
-
-            @Override
-            public void onCodeSent(@NonNull String verificationId,
-                                   @NonNull PhoneAuthProvider.ForceResendingToken token) {
-                // The SMS verification code has been sent to the provided phone number, we
-                // now need to ask the user to enter the code and then construct a credential
-                // by combining the code with a verification ID.
-                Log.d(TAG, "onCodeSent:" + verificationId);
-
-                // Save verification ID and resending token so we can use them later
-                mVerificationId = verificationId;
-                mResendToken = token;
-
-                // [START_EXCLUDE]
-                // Update UI
-                //updateUI(STATE_CODE_SENT);
-                // [END_EXCLUDE]
-            }
-        };
+        mVerificationButton = findViewById(R.id.verify_otp);
 
         startPhoneNumberVerification();
+        verificationButtonClick();
     }
 
     private void verifyPhoneNumberWithCode(String verificationId, String code) {
@@ -102,41 +125,6 @@ public class OTPVerificationActivity extends AppCompatActivity {
         // [END start_phone_auth]
     }
 
-    private void verificationButtonClick() {
-
-        mVerificationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (!TextUtils.isEmpty(mEditText1.getText().toString()) && !TextUtils.isEmpty(mEditText2.getText().toString())
-                        && !TextUtils.isEmpty(mEditText3.getText().toString()) && !TextUtils.isEmpty(mEditText4.getText().toString())) {
-
-                    String code = mEditText1.getText().toString() + mEditText2.getText().toString() +
-                            mEditText2.getText().toString() + mEditText2.getText().toString();
-
-                    verifyPhoneNumberWithCode(mVerificationId, code);
-
-                } else {
-                    Toast.makeText(OTPVerificationActivity.this, "One or more field is empty", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            Toast.makeText(this, "" + currentUser, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "No current user", Toast.LENGTH_SHORT).show();
-            startPhoneNumberVerification();
-        }
-    }
-    // [END on_start_check_user]
-
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -145,27 +133,48 @@ public class OTPVerificationActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
+                            mTextHeader.setText("You are almost there...");
+                            mTextBoxTitle.setText("OTP Verified");
+                            mTextBoxTitle.setTextColor(getResources().getColor(R.color.colorGreen));
+                            mImageCheckError.setImageResource(R.drawable.ic_baseline_check_);
+                            mVerificationButton.setText("Next");
+                            Toast.makeText(OTPVerificationActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
 
-                            FirebaseUser user = task.getResult().getUser();
-                            // [START_EXCLUDE]
-//                            updateUI(STATE_SIGNIN_SUCCESS, user);
-                            // [END_EXCLUDE]
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                // The verification code entered was invalid
-                                // [START_EXCLUDE silent]
-//                                mBinding.fieldVerificationCode.setError("Invalid code.");
-                                // [END_EXCLUDE]
+                                mTextHeader.setText("You are almost there...");
+                                mTextBoxTitle.setText("OTP Verified");
+                                mTextBoxTitle.setTextColor(getResources().getColor(R.color.colorRed));
+                                mImageCheckError.setImageResource(R.drawable.ic_baseline_error);
                             }
-                            // [START_EXCLUDE silent]
-                            // Update UI
-//                            updateUI(STATE_SIGNIN_FAILED);
-                            // [END_EXCLUDE]
+
                         }
                     }
                 });
+    }
+
+
+    private void verificationButtonClick() {
+
+        mVerificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String code = mEditText1.getText().toString() + mEditText2.getText().toString() +
+                        mEditText2.getText().toString() + mEditText2.getText().toString();
+
+                if (code.isEmpty() || code.length() < 6) {
+                    Toast.makeText(OTPVerificationActivity.this, "Enter Valid Code", Toast.LENGTH_SHORT).show();
+                    return;
+
+                }
+
+                //verifying the code entered manually
+                verifyPhoneNumberWithCode(mVerificationId, code);
+            }
+        });
     }
 
     public class GenericKeyEvent implements View.OnKeyListener {
