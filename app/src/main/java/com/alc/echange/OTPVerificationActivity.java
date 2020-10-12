@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,14 +36,17 @@ import java.util.concurrent.TimeUnit;
 public class OTPVerificationActivity extends AppCompatActivity {
 
     private static final String TAG = "OTPVerificationActivity";
-    EditText mEditText1, mEditText2, mEditText3, mEditText4, mEditText5, mEditText6;
-    TextView mTextHeader, mTextBoxTitle, mTextResendCode;
-    ImageView mImageCheckError;
+    private EditText mEditText1, mEditText2, mEditText3, mEditText4, mEditText5, mEditText6;
+    private TextView mTextHeader;
+    private TextView mTextBoxTitle;
+    private ImageView mImageCheckError;
+    private ProgressBar progressBar;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private Button mVerificationButton;
     private FirebaseAuth mAuth;
     private Boolean isSuccessful;
+
 
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
@@ -62,7 +66,6 @@ public class OTPVerificationActivity extends AppCompatActivity {
                 mEditText6.setText(code.substring(5,6));
 
                 verifyPhoneNumberWithCode(code);
-
             }
             Toast.makeText(OTPVerificationActivity.this, "Verification completed!", Toast.LENGTH_SHORT).show();
         }
@@ -92,10 +95,12 @@ public class OTPVerificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_otp_verification);
 
         mAuth = FirebaseAuth.getInstance();
+        progressBar = findViewById(R.id.progressbar);
+
         editTextInitialization();
         mTextHeader = findViewById(R.id.text_header);
         mTextBoxTitle = findViewById(R.id.text_box_title);
-        mTextResendCode = findViewById(R.id.text_resend_code);
+        TextView textResendCode = findViewById(R.id.text_resend_code);
         mImageCheckError = findViewById(R.id.image_check_error);
 
         mVerificationButton = findViewById(R.id.verify_otp);
@@ -104,7 +109,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
         startPhoneNumberVerification();
 
         verificationButtonClick();
-        mTextResendCode.setOnClickListener(new View.OnClickListener() {
+        textResendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startPhoneNumberVerification();
@@ -122,6 +127,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
     }
 
     private void startPhoneNumberVerification() {
+        progressBar.setVisibility(View.VISIBLE);
         // [START start_phone_auth]
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 //
@@ -148,6 +154,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
                             mImageCheckError.setImageResource(R.drawable.ic_baseline_check_);
                             mImageCheckError.setVisibility(View.VISIBLE);
                             mVerificationButton.setText("Next");
+                            progressBar.setVisibility(View.GONE);
 
                         } else {
                             // Sign in failed, display a message and update the UI
@@ -159,6 +166,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
                                 mImageCheckError.setImageResource(R.drawable.ic_baseline_error);
                                 mImageCheckError.setVisibility(View.VISIBLE);
                                 mVerificationButton.setText("Retry");
+                                progressBar.setVisibility(View.GONE);
                             }
 
                         }
