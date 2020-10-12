@@ -103,7 +103,9 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
         mVerificationButton = findViewById(R.id.verify_otp);
 
+        //Add your phone number before you run startPhoneNumberVerification()
         startPhoneNumberVerification();
+
         verificationButtonClick();
     }
 
@@ -117,7 +119,8 @@ public class OTPVerificationActivity extends AppCompatActivity {
     private void startPhoneNumberVerification() {
         // [START start_phone_auth]
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+23408067994494",        // Phone number to verify
+                //
+                "",        // Phone number to verify
                 60,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 this,               // Activity (for callback binding)
@@ -146,9 +149,9 @@ public class OTPVerificationActivity extends AppCompatActivity {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 mTextHeader.setText("You are almost there...");
                                 mTextBoxTitle.setText("OTP Verified");
-                                mVerificationButton.setText("Retry");
                                 mTextBoxTitle.setTextColor(getResources().getColor(R.color.colorRed));
                                 mImageCheckError.setImageResource(R.drawable.ic_baseline_error);
+                                mVerificationButton.setText("Retry");
                             }
 
                         }
