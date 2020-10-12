@@ -42,6 +42,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private Button mVerificationButton;
     private FirebaseAuth mAuth;
+    private Boolean isSuccessful;
 
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
@@ -82,11 +83,6 @@ public class OTPVerificationActivity extends AppCompatActivity {
             // Save verification ID and resending token so we can use them later
             mVerificationId = verificationId;
             mResendToken = token;
-
-            // [START_EXCLUDE]
-            // Update UI
-            //updateUI(STATE_CODE_SENT);
-            // [END_EXCLUDE]
         }
     };
 
@@ -107,6 +103,8 @@ public class OTPVerificationActivity extends AppCompatActivity {
         startPhoneNumberVerification();
 
         verificationButtonClick();
+
+        isSuccessful = false;
     }
 
     private void verifyPhoneNumberWithCode(String verificationId, String code) {
@@ -135,6 +133,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            isSuccessful = true;
                             Log.d(TAG, "signInWithCredential:success");
                             mTextHeader.setText("You are almost there...");
                             mTextBoxTitle.setText("OTP Verified");
@@ -169,14 +168,18 @@ public class OTPVerificationActivity extends AppCompatActivity {
                 String code = mEditText1.getText().toString() + mEditText2.getText().toString() +
                         mEditText2.getText().toString() + mEditText2.getText().toString();
 
-                if (code.isEmpty() || code.length() < 6) {
-                    Toast.makeText(OTPVerificationActivity.this, "Enter Valid Code", Toast.LENGTH_SHORT).show();
-                    return;
+                if (isSuccessful){
+                    Toast.makeText(OTPVerificationActivity.this, "Login User", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (code.isEmpty() || code.length() < 6) {
+                        Toast.makeText(OTPVerificationActivity.this, "Enter Valid Code", Toast.LENGTH_SHORT).show();
+                        return;
 
+                    }
+
+                    //verifying the code entered manually
+                    verifyPhoneNumberWithCode(mVerificationId, code);
                 }
-
-                //verifying the code entered manually
-                verifyPhoneNumberWithCode(mVerificationId, code);
             }
         });
     }
