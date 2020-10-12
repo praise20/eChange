@@ -146,6 +146,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
                                 mTextHeader.setText("You are almost there...");
                                 mTextBoxTitle.setText("OTP Verified");
+                                mVerificationButton.setText("Retry");
                                 mTextBoxTitle.setTextColor(getResources().getColor(R.color.colorRed));
                                 mImageCheckError.setImageResource(R.drawable.ic_baseline_error);
                             }
