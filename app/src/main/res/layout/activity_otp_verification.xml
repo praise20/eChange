@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OTPVerificationActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="0dp"
+        android:layout_height="170dp"
+        android:background="@drawable/ic_background_top"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/roboto_black"
+        android:text="You are almost there..."
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/text_box_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linear_layout">
+
+        <ImageView
+            android:id="@+id/image_check_close"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:visibility="gone"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/text_box_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_check_" />
+
+        <TextView
+            android:id="@+id/text_box_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/antic"
+            android:text="Enter the six digit OTP"
+            android:textColor="@color/colorBlack"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/ly_otp_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_box_container">
+
+        <EditText
+            android:id="@+id/edit_text_one"
+            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:padding="4dp"
+            android:fontFamily="@font/roboto"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_edit_text"
+            android:ems="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:gravity="center_horizontal"
+            android:inputType="number"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_text_two"
+            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:padding="4dp"
+            android:fontFamily="@font/roboto"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_edit_text"
+            android:ems="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:gravity="center_horizontal"
+            android:inputType="number"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@id/edit_text_one"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_text_three"
+            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:padding="4dp"
+            android:fontFamily="@font/roboto"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_edit_text"
+            android:ems="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:gravity="center_horizontal"
+            android:inputType="number"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@id/edit_text_two"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_text_four"
+            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:padding="4dp"
+            android:fontFamily="@font/roboto"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_edit_text"
+            android:ems="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:gravity="center_horizontal"
+            android:inputType="number"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@id/edit_text_three"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_text_five"
+            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:padding="4dp"
+            android:fontFamily="@font/roboto"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_edit_text"
+            android:ems="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:gravity="center_horizontal"
+            android:inputType="number"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@id/edit_text_four"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_text_six"
+            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:padding="4dp"
+            android:fontFamily="@font/roboto"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_edit_text"
+            android:ems="1"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:gravity="center_horizontal"
+            android:inputType="number"
+            android:text=""
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@id/edit_text_five"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/verify_otp"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/roboto"
+        android:text="Verify"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ly_otp_box" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
