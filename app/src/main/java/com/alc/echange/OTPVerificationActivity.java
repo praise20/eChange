@@ -36,7 +36,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
     private static final String TAG = "OTPVerificationActivity";
     EditText mEditText1, mEditText2, mEditText3, mEditText4, mEditText5, mEditText6;
-    TextView mTextHeader, mTextBoxTitle;
+    TextView mTextHeader, mTextBoxTitle, mTextResendCode;
     ImageView mImageCheckError;
     private String mVerificationId;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
@@ -61,7 +61,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
                 mEditText5.setText(code.substring(4,5));
                 mEditText6.setText(code.substring(5,6));
 
-                verifyPhoneNumberWithCode(mVerificationId, code);
+                verifyPhoneNumberWithCode(code);
 
             }
             Toast.makeText(OTPVerificationActivity.this, "Verification completed!", Toast.LENGTH_SHORT).show();
@@ -95,6 +95,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
         editTextInitialization();
         mTextHeader = findViewById(R.id.text_header);
         mTextBoxTitle = findViewById(R.id.text_box_title);
+        mTextResendCode = findViewById(R.id.text_resend_code);
         mImageCheckError = findViewById(R.id.image_check_error);
 
         mVerificationButton = findViewById(R.id.verify_otp);
@@ -103,13 +104,19 @@ public class OTPVerificationActivity extends AppCompatActivity {
         startPhoneNumberVerification();
 
         verificationButtonClick();
+        mTextResendCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startPhoneNumberVerification();
+            }
+        });
 
         isSuccessful = false;
     }
 
-    private void verifyPhoneNumberWithCode(String verificationId, String code) {
+    private void verifyPhoneNumberWithCode(String code) {
         // [START verify_with_code]
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
         // [END verify_with_code]
         signInWithPhoneAuthCredential(credential);
     }
@@ -139,17 +146,18 @@ public class OTPVerificationActivity extends AppCompatActivity {
                             mTextBoxTitle.setText("OTP Verified");
                             mTextBoxTitle.setTextColor(getResources().getColor(R.color.colorGreen));
                             mImageCheckError.setImageResource(R.drawable.ic_baseline_check_);
+                            mImageCheckError.setVisibility(View.VISIBLE);
                             mVerificationButton.setText("Next");
-                            Toast.makeText(OTPVerificationActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
 
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                mTextHeader.setText("You are almost there...");
-                                mTextBoxTitle.setText("OTP Verified");
+                                mTextHeader.setText("Please, enter the correct OTP...");
+                                mTextBoxTitle.setText("OTP Incorrect");
                                 mTextBoxTitle.setTextColor(getResources().getColor(R.color.colorRed));
                                 mImageCheckError.setImageResource(R.drawable.ic_baseline_error);
+                                mImageCheckError.setVisibility(View.VISIBLE);
                                 mVerificationButton.setText("Retry");
                             }
 
@@ -166,7 +174,8 @@ public class OTPVerificationActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String code = mEditText1.getText().toString() + mEditText2.getText().toString() +
-                        mEditText2.getText().toString() + mEditText2.getText().toString();
+                        mEditText3.getText().toString() + mEditText4.getText().toString() +
+                        mEditText5.getText().toString() + mEditText6.getText().toString();
 
                 if (isSuccessful){
                     Toast.makeText(OTPVerificationActivity.this, "Login User", Toast.LENGTH_SHORT).show();
@@ -178,7 +187,8 @@ public class OTPVerificationActivity extends AppCompatActivity {
                     }
 
                     //verifying the code entered manually
-                    verifyPhoneNumberWithCode(mVerificationId, code);
+                    verifyPhoneNumberWithCode(code);
+
                 }
             }
         });
