@@ -5,24 +5,19 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alc.echange.OTPVerificationActivity;
 import com.alc.echange.R;
 import com.alc.echange.api.RetrofitClient;
 import com.alc.echange.model.Users;
 import com.google.android.material.textfield.TextInputEditText;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
     TextInputEditText mPhone, mPassword;

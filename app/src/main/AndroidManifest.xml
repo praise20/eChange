@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.PhoneActivity"></activity>
-        <activity android:name=".OTPVerificationActivity">
+        <activity android:name=".activities.OTPVerificationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
