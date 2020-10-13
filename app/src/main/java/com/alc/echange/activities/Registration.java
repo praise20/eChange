@@ -17,11 +17,7 @@ import android.widget.Toast;
 
 import com.alc.echange.R;
 import com.alc.echange.api.RetrofitClient;
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.google.android.material.textfield.TextInputEditText;
+
 
 import org.json.JSONObject;
 
@@ -31,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Registration extends AppCompatActivity {
-    EditText etEmail, etPhone, etFname, etLname, etPassword;
+    EditText  etFname, etLname,etEmail, etPhone, etPassword;
     private Button btnReg;
 
     @Override
@@ -41,11 +37,12 @@ public class Registration extends AppCompatActivity {
 
         //        AndroidNetworking.initialize(getApplicationContext());
 
-        etEmail = findViewById(R.id.etEmail);
-        etPhone = findViewById(R.id.etPhone);
         etFname = findViewById(R.id.etFname);
         etLname = findViewById(R.id.etLname);
+        etEmail = findViewById(R.id.etEmail);
+        etPhone = findViewById(R.id.etPhone);
         etPassword = findViewById(R.id.etPassword);
+
         btnReg = findViewById(R.id.btnReg);
 
         btnReg.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +116,7 @@ public class Registration extends AppCompatActivity {
         Call<ResponseBody> call = RetrofitClient
                 .getInstance()
                 .getApi()
-                .createUser(firstname, lastname, phone, email, password);
+                .createUser(firstname, lastname, email, phone, password);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

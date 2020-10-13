@@ -19,12 +19,11 @@ public interface Api {
             @Field("password") String password
     );
 
-    //the signIn call
+    //the sign in call
     @FormUrlEncoded
     @POST("login")
     Call<Users> login(
             @Field("phone") String phone,
             @Field("password") String password
     );
-
 }

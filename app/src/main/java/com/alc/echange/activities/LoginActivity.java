@@ -1,7 +1,6 @@
 package com.alc.echange.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alc.echange.OTPVerificationActivity;
 import com.alc.echange.R;
 import com.alc.echange.api.RetrofitClient;
 import com.alc.echange.model.Users;
@@ -25,7 +25,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText mPhone, mPassword;
+    TextInputEditText mPhone, mPassword;
     Button mLogin;
     TextView regLink;
     ProgressDialog loadingBar;
@@ -39,12 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         mLogin = findViewById(R.id.btnLogin);
         regLink = findViewById(R.id.tvReg);
 
-        regLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                moveToRegActivity();
-            }
-        });
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,12 +52,16 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        regLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent regIntent = new Intent(getApplicationContext(), OTPVerificationActivity.class);
+                startActivity(regIntent);
+            }
+        });
     }
 
-    private void moveToRegActivity() {
-        Intent regIntent = new Intent(getApplicationContext(), Registration.class);
-        startActivity(regIntent);
-    }
 
     public void loginUser(String phone, String password) {
         Call<Users> call = RetrofitClient
@@ -77,14 +75,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Users> call, Response<Users> response) {
                 if (response.isSuccessful()) {
+                    System.out.println("Calling ::" + call);
+                    System.out.println("Systems :: "+ response);
                     progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Login Success!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), DashboardActivity.class);
                     startActivity(intent);
                 } else {
-                    Log.d("failing", "response" + response);
+                    System.out.println("Printing : " + response);
                     progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(), "Login Failed!, Try Again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Login failed!, Try Again", Toast.LENGTH_SHORT).show();
                 }
             }
 
