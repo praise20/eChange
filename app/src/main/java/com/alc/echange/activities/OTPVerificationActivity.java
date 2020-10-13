@@ -45,48 +45,6 @@ public class OTPVerificationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Boolean isSuccessful;
 
-
-    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-        @Override
-        public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
-            //Getting the code sent by SMS
-            String code = credential.getSmsCode();
-
-            //sometime the code is not detected automatically
-            //in this case the code will be null
-            //so user has to manually enter the code
-            if (code != null) {
-                mEditText1.setText(code.substring(0,1));
-                mEditText2.setText(code.substring(1,2));
-                mEditText3.setText(code.substring(2,3));
-                mEditText4.setText(code.substring(3,4));
-                mEditText5.setText(code.substring(4,5));
-                mEditText6.setText(code.substring(5,6));
-
-                verifyPhoneNumberWithCode(code);
-            }
-            Toast.makeText(OTPVerificationActivity.this, "Verification completed!", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onVerificationFailed(@NonNull FirebaseException e) {
-
-        }
-
-        @Override
-        public void onCodeSent(@NonNull String verificationId,
-                               @NonNull PhoneAuthProvider.ForceResendingToken token) {
-            // The SMS verification code has been sent to the provided phone number, we
-            // now need to ask the user to enter the code and then construct a credential
-            // by combining the code with a verification ID.
-            Log.d(TAG, "onCodeSent:" + verificationId);
-
-            // Save verification ID and resending token so we can use them later
-            mVerificationId = verificationId;
-            mResendToken = token;
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +74,48 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
         isSuccessful = false;
     }
+
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        @Override
+        public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
+            //Getting the code sent by SMS
+            String code = credential.getSmsCode();
+
+            //sometime the code is not detected automatically
+            //in this case the code will be null
+            //so user has to manually enter the code
+            if (code != null) {
+                mEditText1.setText(code.substring(0, 1));
+                mEditText2.setText(code.substring(1, 2));
+                mEditText3.setText(code.substring(2, 3));
+                mEditText4.setText(code.substring(3, 4));
+                mEditText5.setText(code.substring(4, 5));
+                mEditText6.setText(code.substring(5, 6));
+
+                verifyPhoneNumberWithCode(code);
+            }
+            Toast.makeText(OTPVerificationActivity.this, "Verification completed!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onVerificationFailed(@NonNull FirebaseException e) {
+
+        }
+
+        @Override
+        public void onCodeSent(@NonNull String verificationId,
+                               @NonNull PhoneAuthProvider.ForceResendingToken token) {
+            // The SMS verification code has been sent to the provided phone number, we
+            // now need to ask the user to enter the code and then construct a credential
+            // by combining the code with a verification ID.
+            Log.d(TAG, "onCodeSent:" + verificationId);
+
+            // Save verification ID and resending token so we can use them later
+            mVerificationId = verificationId;
+            mResendToken = token;
+        }
+    };
+
 
     private void verifyPhoneNumberWithCode(String code) {
         // [START verify_with_code]
@@ -183,8 +183,9 @@ public class OTPVerificationActivity extends AppCompatActivity {
                         mEditText3.getText().toString() + mEditText4.getText().toString() +
                         mEditText5.getText().toString() + mEditText6.getText().toString();
 
-                if (isSuccessful){
-                    Toast.makeText(OTPVerificationActivity.this, "Login User", Toast.LENGTH_SHORT).show();
+                if (isSuccessful) {
+                    Toast.makeText(OTPVerificationActivity.this, "Register User", Toast.LENGTH_SHORT).show();
+                    
                 } else {
                     if (code.isEmpty() || code.length() < 6) {
                         Toast.makeText(OTPVerificationActivity.this, "Enter Valid Code", Toast.LENGTH_SHORT).show();
@@ -204,7 +205,8 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
 
         private EditText currentView, previousView;
-        public GenericKeyEvent (EditText currentView, EditText previousView) {
+
+        public GenericKeyEvent(EditText currentView, EditText previousView) {
             this.currentView = currentView;
             this.previousView = previousView;
         }
