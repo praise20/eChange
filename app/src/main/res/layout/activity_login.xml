@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:layout_gravity="center"
         android:orientation="vertical">
@@ -25,15 +25,14 @@
             android:text="Log in"
             android:textStyle="bold"
             android:textSize="25sp"
-            android:textColor="@color/colorWhite"
-            android:layout_marginTop="30dp"/>
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Someone is waiting to be paid"
             android:textStyle="normal"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorPrimary"
             android:layout_marginTop="5dp"/>
 
         <androidx.cardview.widget.CardView
@@ -155,26 +154,25 @@
             android:layout_marginTop="20dp"
             android:layout_below="@+id/linearLayout1">
 
-            <TextView
-                android:id="@+id/tvReg1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New User?"
-                android:textSize="15sp"
-                android:textStyle="normal"
-                android:textColor="@color/colorPrimary"
-                android:gravity="center" />
+<!--            <TextView-->
+<!--                android:id="@+id/tvReg1"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="New User?"-->
+<!--                android:textSize="15sp"-->
+<!--                android:textStyle="normal"-->
+<!--                android:textColor="@color/colorPrimary"-->
+<!--                android:gravity="center" />-->
 
             <TextView
                 android:id="@+id/tvReg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Register here"
+                android:text="Dont have an Account? Register here"
                 android:textStyle="normal"
                 android:textColor="@color/colorPrimary"
-                android:layout_toEndOf="@+id/tvReg1"
                 android:gravity="center"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginStart="10dp"/>
 
         </RelativeLayout>
 

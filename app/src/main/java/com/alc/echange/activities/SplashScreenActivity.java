@@ -1,4 +1,4 @@
-package com.alc.echange;
+package com.alc.echange.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,7 +10,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.alc.echange.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -43,8 +44,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
-                Toast.makeText(SplashScreenActivity.this, "LoginActivity", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
+//                Toast.makeText(SplashScreenActivity.this, "LoginActivity", Toast.LENGTH_SHORT).show();
             }
         }, TIMER);
     }

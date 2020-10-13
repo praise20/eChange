@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_bckground"
-    tools:context=".Registration">
+    tools:context=".activities.Registration">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -22,153 +21,152 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/user_avata"/>
+                android:src="@drawable/user_avata" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Create an Account"
-                android:textStyle="bold"
-                android:textSize="25sp"
                 android:textColor="@color/colorPrimary"
-                android:layout_marginTop="20dp"/>
-
+                android:textSize="25sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:layout_gravity="center"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_gravity="center">
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your firstname"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:hint="Enter firstname"
                     android:textColorHint="@color/colorPrimary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
                         android:inputType="text"
-                        android:textColor="@color/colorPrimary"
-                        android:backgroundTint="@color/colorPrimaryDark" />
-
+                        android:textColor="@color/colorPrimary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your lastname"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:hint="Enter lastname"
                     android:textColorHint="@color/colorPrimary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etLname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
                         android:inputType="text"
-                        android:textColor="@color/colorPrimary"
-                        android:backgroundTint="@color/colorPrimaryDark" />
+                        android:textColor="@color/colorPrimary" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your email"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:hint="Enter your email"
                     android:textColorHint="@color/colorPrimary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="phone"
-                        android:textColor="@color/colorPrimary"
-                        android:backgroundTint="@color/colorPrimaryDark" />
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/colorPrimary" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your phone number"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:hint="Enter your phone number"
                     android:textColorHint="@color/colorPrimary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorPrimaryDark"
                         android:inputType="phone"
-                        android:textColor="@color/colorPrimary"
-                        android:backgroundTint="@color/colorPrimaryDark" />
-
+                        android:textColor="@color/colorPrimary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter your password"
-                    android:textColorHint="@color/colorPrimary"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:hint="Enter your password"
+                    android:textColorHint="@color/colorPrimary"
                     app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="@color/colorPrimary"
-                    android:layout_marginBottom="20dp">
+                    app:passwordToggleTint="@color/colorPrimary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimary"
                         android:backgroundTint="@color/colorPrimaryDark"
-                        android:inputType="textPassword"/>
-
+                        android:inputType="textPassword"
+                        android:textColor="@color/colorPrimary" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/btnReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log in"
-            android:textColor="@color/colorWhite"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_login_bg"
             android:drawableEnd="@drawable/ic_back"
             android:drawablePadding="10dp"
-            android:background="@drawable/btn_login_bg"
-            android:layout_marginTop="30dp"/>
+            android:text="Sign Up"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="45dp"
+            android:gravity="center"
+            android:text="Have an Account? Login Here" />
     </LinearLayout>
-
-
-
 </ScrollView>
