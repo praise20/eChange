@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "755037854354",
+    "firebase_url": "https://e-change-fintech-app.firebaseio.com",
+    "project_id": "e-change-fintech-app",
+    "storage_bucket": "e-change-fintech-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755037854354:android:8403d35e3f799e1c4b244b",
+        "android_client_info": {
+          "package_name": "com.alc.echange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755037854354-1af3aupcjg6qmike46dtfcl7mj0l3icv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC18coETtm9LJEMMK8SJt5msvm3zGjFt4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755037854354-1af3aupcjg6qmike46dtfcl7mj0l3icv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

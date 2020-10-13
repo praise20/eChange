@@ -2,4 +2,5 @@
     <string name="app_name">eChange</string>
     <string name="splash_app_name_logo">e-Change</string>
     <string name="splash_text_slogan">Seamless Checkout Experience…</string>
+    <string name="resend_otp"><b><u>Resend OTP</u></b></string>
 </resources>

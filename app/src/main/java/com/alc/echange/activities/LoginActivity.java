@@ -25,7 +25,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText mPhone, mPassword;
+    TextInputEditText mPhone, mPassword;
     Button mLogin;
     TextView regLink;
     ProgressDialog loadingBar;
