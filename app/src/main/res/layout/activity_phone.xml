@@ -46,7 +46,6 @@
             android:textSize="30sp"
             android:background="@drawable/custom_edit_text"
             android:textColor="@color/colorPrimary"
-            android:backgroundTint="@color/colorPrimaryDark"
             android:inputType="phone"/>
 
     </com.google.android.material.textfield.TextInputLayout>

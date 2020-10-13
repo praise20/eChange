@@ -24,8 +24,10 @@ Button mContinue;
         mContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent otpIntent = new Intent(getApplicationContext(), OTPVerificationActivity.class);
-                startActivity(otpIntent);
+                //OTP request
+
+//                Intent otpIntent = new Intent(getApplicationContext(), OTPVerificationActivity.class);
+//                startActivity(otpIntent);
             }
         });
 

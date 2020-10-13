@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         regLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent regIntent = new Intent(getApplicationContext(), OTPVerificationActivity.class);
+                Intent regIntent = new Intent(getApplicationContext(), PhoneActivity.class);
                 startActivity(regIntent);
             }
         });
