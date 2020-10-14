@@ -25,7 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText mPhone, mPassword;
+    TextInputEditText mPhone, mPassword;
     Button mLogin;
     TextView regLink;
     ProgressDialog loadingBar;
@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void registration() {
-        Intent regIntent = new Intent(getApplicationContext(), PhoneAuthActivity.class);
+        Intent regIntent = new Intent(getApplicationContext(), Registration.class);
         startActivity(regIntent);
     }
 
