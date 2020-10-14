@@ -2,7 +2,11 @@ package com.alc.echange.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toolbar;
+
 import com.alc.echange.R;
+
+import java.util.Objects;
 
 public class DashboardActivity extends AppCompatActivity {
 
