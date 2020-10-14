@@ -6,14 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".activities.DashboardActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="DashBoard"
-        android:textStyle="bold"
-        android:gravity="center"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="266dp" />
+    <item
+        android:id="@+id/overview"
+        android:enabled="true"
+        android:icon="@drawable/kwuo"
+        android:orderInCategory="10"
+        android:title="@string/overview"
+        android:visible="true"
+        app:showAsAction="always|withText" />
+
+    <item
+        android:id="@+id/history"
+        android:icon="@drawable/history"
+        android:orderInCategory="20"
+        android:title="@string/history"
+        app:showAsAction="always|withText"/>
+
+    <item
+        android:id="@+id/fund_account"
+        android:icon="@drawable/vector_fund_account"
+        android:orderInCategory="100"
+        android:title="@string/fund_account"
+        app:showAsAction="ifRoom|withText"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
