@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorSplashBackground"
-    tools:context=".activities.PhoneActivity">
+    tools:context=".activities.PhoneAuthActivity">
 
     <ImageView
         android:id="@+id/linear_layout"

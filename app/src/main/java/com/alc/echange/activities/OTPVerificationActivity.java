@@ -185,7 +185,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
                 if (isSuccessful) {
                     Toast.makeText(OTPVerificationActivity.this, "Register User", Toast.LENGTH_SHORT).show();
-                    
+
                 } else {
                     if (code.isEmpty() || code.length() < 6) {
                         Toast.makeText(OTPVerificationActivity.this, "Enter Valid Code", Toast.LENGTH_SHORT).show();

@@ -1,9 +1,7 @@
 package com.alc.echange.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
 import com.alc.echange.R;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -13,4 +11,6 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
     }
+
+
 }
