@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void registration() {
-        Intent regIntent = new Intent(getApplicationContext(), Registration.class);
+        Intent regIntent = new Intent(getApplicationContext(), PhoneAuthActivity.class);
         startActivity(regIntent);
     }
 
