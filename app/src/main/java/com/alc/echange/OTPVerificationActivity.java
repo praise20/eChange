@@ -1,4 +1,4 @@
-package com.alc.echange.activities;
+package com.alc.echange;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +19,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alc.echange.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -30,6 +29,8 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
+
+import static com.alc.echange.activities.PhoneAuthActivity.USER_PHONE_NUMBER;
 
 public class OTPVerificationActivity extends AppCompatActivity {
 
@@ -44,6 +45,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
     private Button mVerificationButton;
     private FirebaseAuth mAuth;
     private Boolean isSuccessful;
+    private String mPhoneNoReceivedViaIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,11 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
         mVerificationButton = findViewById(R.id.verify_otp);
 
+        String phoneNo = getIntent().getStringExtra(USER_PHONE_NUMBER);
+        if (phoneNo != null){
+            mPhoneNoReceivedViaIntent = phoneNo;
+            Log.i(TAG, "onCreate: Phone number received via intent is: " + mPhoneNoReceivedViaIntent);
+        }
         //Add your phone number before you run startPhoneNumberVerification()
         startPhoneNumberVerification();
 
@@ -129,7 +136,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
         // [START start_phone_auth]
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 //
-                "",        // Phone number to verify
+                mPhoneNoReceivedViaIntent,        // Phone number to verify
                 60,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
                 this,               // Activity (for callback binding)
