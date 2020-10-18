@@ -1,0 +1,159 @@
+{
+  "project_info": {
+    "project_number": "257716469246",
+    "firebase_url": "https://electioneer-1545577657457.firebaseio.com",
+    "project_id": "electioneer-1545577657457",
+    "storage_bucket": "electioneer-1545577657457.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257716469246:android:aed611fe8707daee0594af",
+        "android_client_info": {
+          "package_name": "com.abia.weatherforcast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257716469246-r7qfusukjiqn4m900alibdcghkb9otor.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.abia.weatherforcast",
+            "certificate_hash": "48165b74907caeffb824dda5ad6dd2961de10ddd"
+          }
+        },
+        {
+          "client_id": "257716469246-a0b492463574i83d6hbauaaeugkejqgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7o76fOGr86LCVS3gi2Rjvzybe-Lwz178"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257716469246-a0b492463574i83d6hbauaaeugkejqgu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257716469246:android:2481a80e9d97b8090594af",
+        "android_client_info": {
+          "package_name": "com.alc.echange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257716469246-4bv8ios00pbdmv7mtq2aejfemj236q1k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alc.echange",
+            "certificate_hash": "a8fc5e8cc1c63dcc86d11d9811721683308007dc"
+          }
+        },
+        {
+          "client_id": "257716469246-a0b492463574i83d6hbauaaeugkejqgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7o76fOGr86LCVS3gi2Rjvzybe-Lwz178"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257716469246-a0b492463574i83d6hbauaaeugkejqgu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257716469246:android:c1133b4a6be2beb9",
+        "android_client_info": {
+          "package_name": "com.app.jostour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257716469246-vk1asp53f2r5cug8ua0q8vuld4l1q84b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.jostour",
+            "certificate_hash": "34c51c2e34a15f20a884eb2645005d701be5fd2c"
+          }
+        },
+        {
+          "client_id": "257716469246-a0b492463574i83d6hbauaaeugkejqgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7o76fOGr86LCVS3gi2Rjvzybe-Lwz178"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257716469246-a0b492463574i83d6hbauaaeugkejqgu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257716469246:android:ac36acbb6972f9e90594af",
+        "android_client_info": {
+          "package_name": "com.sammy.radioapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "257716469246-elq894j93ssa42hj5ljqpft9sgd1s38f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sammy.radioapp",
+            "certificate_hash": "a8fc5e8cc1c63dcc86d11d9811721683308007dc"
+          }
+        },
+        {
+          "client_id": "257716469246-a0b492463574i83d6hbauaaeugkejqgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7o76fOGr86LCVS3gi2Rjvzybe-Lwz178"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "257716469246-a0b492463574i83d6hbauaaeugkejqgu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
